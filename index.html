@@ -5,19 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Tyson Priddle | Learning Technology &amp; AI Capability</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap">
   <style>
+
+    /* TOKENS */
     :root {
-      --navy:       #0F2D52;
-      --teal:       #0A7C8C;
-      --teal-mid:   #0D9BAD;
-      --teal-pale:  #EAF5F7;
-      --teal-dark:  #075F6B;
-      --text:       #1E1E1E;
-      --muted:      #58666E;
-      --rule:       #D4DCE3;
-      --bg:         #F0F3F6;
+      --dark:       #0A0A0F;
+      --dark-mid:   #12121A;
+      --dark-card:  #1A1A26;
+      --teal:       #00E5CC;
+      --teal-dim:   rgba(0,229,204,0.12);
+      --teal-glow:  rgba(0,229,204,0.25);
+      --bg:         #F0F0F5;
       --white:      #FFFFFF;
-      --shadow:     rgba(15, 45, 82, 0.09);
+      --text:       #1C1C2E;
+      --muted:      #6B6B85;
+      --rule:       #E0E0EC;
+      --card-shadow: 0 2px 20px rgba(10,10,15,0.08);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,155 +31,278 @@
 
     body {
       background: var(--bg);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 10.5pt;
-      line-height: 1.5;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
       color: var(--text);
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── TOPBAR ─── */
+    /* TOPBAR */
     .topbar {
-      background: var(--navy);
-      padding: 10px 32px;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0,229,204,0.1);
+      padding: 0 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200;
+      height: 52px;
     }
-    .topbar-name { color: rgba(255,255,255,0.9); font-size: 9pt; font-weight: 600; letter-spacing: 0.3px; }
-    .topbar-links { display: flex; gap: 4px; }
+    .topbar-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .topbar-links { display: flex; gap: 0; }
     .topbar-links a {
-      color: rgba(255,255,255,0.65);
+      color: rgba(255,255,255,0.55);
       text-decoration: none;
-      font-size: 8.5pt;
-      padding: 5px 12px;
-      border-radius: 4px;
-      transition: background 0.2s, color 0.2s;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 16px 16px;
+      display: block;
+      position: relative;
+      transition: color 0.2s;
     }
-    .topbar-links a:hover { background: rgba(255,255,255,0.1); color: white; }
+    .topbar-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 16px;
+      right: 16px;
+      height: 2px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+    .topbar-links a:hover { color: var(--teal); }
+    .topbar-links a:hover::after { transform: scaleX(1); }
 
-    /* ─── HERO ─── */
+    /* HERO */
     .hero {
-      background: linear-gradient(135deg, var(--navy) 0%, #1B4D7E 45%, var(--teal-dark) 100%);
-      padding: 48px 32px 44px;
+      background: var(--dark);
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 40px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,204,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,204,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(0,229,204,0.08) 0%, transparent 70%);
+      pointer-events: none;
     }
     .hero-inner {
-      max-width: 860px;
+      max-width: 960px;
       margin: 0 auto;
+      width: 100%;
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 56px;
+      position: relative;
+      z-index: 1;
     }
-
-    /* Photo */
-    .hero-photo-wrap {
+    .hero-text { flex: 1; }
+    .hero-eyebrow {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--teal);
       flex-shrink: 0;
     }
-    .hero-photo {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid rgba(255,255,255,0.25);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      background: rgba(255,255,255,0.1);
-      display: block;
-    }
-    /* Fallback initials if photo doesn't load */
-    .hero-photo-wrap .initials {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      border: 3px solid rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.12);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-size: 28pt;
-      font-weight: 800;
-      color: rgba(255,255,255,0.7);
-      letter-spacing: -1px;
-    }
-
-    /* Text */
-    .hero-text { flex: 1; }
     .hero-name {
-      font-size: 28pt;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(40px, 6vw, 68px);
       font-weight: 800;
-      color: white;
-      letter-spacing: -0.8px;
-      line-height: 1.05;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      line-height: 1.0;
+      margin-bottom: 18px;
     }
     .hero-title {
-      font-size: 11.5pt;
-      color: rgba(255,255,255,0.75);
-      font-weight: 400;
-      margin-top: 6px;
-      letter-spacing: 0.2px;
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(17px, 2.2vw, 22px);
+      font-weight: 500;
+      color: var(--teal);
+      letter-spacing: 0.01em;
+      margin-bottom: 32px;
     }
-    .hero-divider {
-      width: 40px; height: 2px;
-      background: var(--teal-mid);
-      margin: 14px 0;
-      border-radius: 2px;
+    .hero-quote {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+      max-width: 560px;
+      padding-left: 20px;
+      border-left: 2px solid rgba(0,229,204,0.4);
+      margin-bottom: 36px;
+      font-style: italic;
     }
     .hero-contact {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px 18px;
+      gap: 8px 20px;
     }
-    .hero-contact a, .hero-contact span {
-      font-size: 9pt;
-      color: rgba(255,255,255,0.6);
+    .hero-contact a,
+    .hero-contact span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
       text-decoration: none;
+      transition: color 0.2s;
     }
-    .hero-contact a:hover { color: white; }
-    .hero-contact .dot { color: rgba(255,255,255,0.3); }
+    .hero-contact a:hover { color: var(--teal); }
+    .hero-contact .dot { color: rgba(255,255,255,0.2); }
 
-    /* ─── CONTAINER ─── */
-    .container {
-      max-width: 860px;
+    /* Photo */
+    .hero-photo-wrap { flex-shrink: 0; }
+    .hero-photo {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(0,229,204,0.4);
+      box-shadow: 0 0 0 8px rgba(0,229,204,0.06), 0 8px 40px rgba(0,0,0,0.5);
+      background: var(--dark-card);
+      display: block;
+    }
+    .hero-photo-wrap .initials {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 3px solid rgba(0,229,204,0.4);
+      box-shadow: 0 0 0 8px rgba(0,229,204,0.06);
+      background: var(--dark-card);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--teal);
+    }
+
+    /* PAGE BODY */
+    .page-body {
+      max-width: 960px;
       margin: 0 auto;
-      padding: 24px 24px 64px;
+      padding: 64px 40px 80px;
     }
 
-    /* ─── ACCORDION CARD ─── */
-    .acc-card {
+    /* SECTION WRAPPER */
+    .section-wrap { margin-bottom: 56px; }
+    .section-head {
+      position: relative;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+    }
+    .section-num {
+      position: absolute;
+      top: -20px;
+      left: -8px;
+      font-family: 'Syne', sans-serif;
+      font-size: 96px;
+      font-weight: 800;
+      color: rgba(10,10,15,0.045);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* CARD */
+    .card {
       background: var(--white);
-      border-radius: 8px;
-      box-shadow: 0 1px 6px var(--shadow);
-      margin-bottom: 14px;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(220,220,232,0.7);
       overflow: hidden;
-      border: 1px solid rgba(212, 220, 227, 0.6);
+      margin-bottom: 0;
     }
 
-    /* Toggle button = the whole section header */
+    /* ACCORDION */
     .acc-btn {
       width: 100%;
       background: none;
       border: none;
-      padding: 16px 24px;
+      padding: 22px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
       text-align: left;
       transition: background 0.15s;
+      gap: 12px;
     }
-    .acc-btn:hover { background: rgba(10, 124, 140, 0.04); }
+    .acc-btn:hover { background: rgba(0,229,204,0.03); }
     .acc-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: -2px; }
-
-    .acc-btn-label {
-      font-size: 7.5pt;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--teal);
-    }
-
     .acc-chevron {
       width: 18px;
       height: 18px;
@@ -182,138 +311,562 @@
       transition: transform 0.28s ease;
     }
     .acc-btn[aria-expanded="false"] .acc-chevron { transform: rotate(-90deg); }
-
-    /* Content area */
     .acc-body {
       overflow: hidden;
-      transition: max-height 0.32s ease, opacity 0.28s ease;
-      max-height: 3000px; /* open by default */
+      transition: max-height 0.36s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+      max-height: 4000px;
       opacity: 1;
     }
-    .acc-body.closed {
-      max-height: 0;
-      opacity: 0;
-    }
+    .acc-body.closed { max-height: 0; opacity: 0; }
     .acc-content {
-      padding: 4px 24px 22px;
-      border-top: 1px solid var(--teal-pale);
+      padding: 0 28px 28px;
+      border-top: 1px solid var(--rule);
     }
 
-    /* ─── SUMMARY ─── */
-    .summary { font-size: 10.5pt; line-height: 1.65; color: var(--text); }
-
-    /* ─── CAPABILITIES ─── */
-    .caps { display: flex; flex-wrap: wrap; gap: 7px; padding-top: 4px; }
-    .cap {
-      background: var(--teal-pale);
-      color: var(--navy);
-      font-size: 8.5pt;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 4px;
-      border: 1px solid rgba(10,124,140,0.15);
+    /* ABOUT */
+    .summary {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--text);
+      padding-top: 20px;
     }
 
-    /* ─── EXPERIENCE ─── */
-    .company-block {
-      padding-bottom: 18px;
-      margin-bottom: 18px;
-      border-bottom: 1px solid var(--rule);
+    /* RECOMMENDATIONS */
+    .reco-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 12px;
+      padding-top: 20px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0,229,204,0.3) transparent;
     }
-    .company-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .reco-scroll::-webkit-scrollbar { height: 4px; }
+    .reco-scroll::-webkit-scrollbar-track { background: transparent; }
+    .reco-scroll::-webkit-scrollbar-thumb { background: rgba(0,229,204,0.3); border-radius: 2px; }
+    .reco-card {
+      background: var(--dark-card);
+      border-radius: 12px;
+      border: 1px solid rgba(0,229,204,0.12);
+      padding: 28px;
+      min-width: 340px;
+      max-width: 380px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      position: relative;
+    }
+    .reco-quote-mark {
+      font-family: 'Syne', sans-serif;
+      font-size: 64px;
+      font-weight: 800;
+      color: rgba(0,229,204,0.15);
+      line-height: 0.7;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .reco-text {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.75);
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .reco-footer {
+      border-top: 1px solid rgba(0,229,204,0.1);
+      padding-top: 16px;
+    }
+    .reco-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 3px;
+    }
+    .reco-job {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 4px;
+    }
+    .reco-meta {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    @media (max-width: 640px) {
+      .reco-scroll { flex-direction: column; overflow-x: visible; scroll-snap-type: none; }
+      .reco-card { min-width: 0; max-width: 100%; }
+    }
 
-    .company-header { margin-bottom: 10px; }
-    .co-name { font-size: 9.5pt; font-weight: 800; color: var(--navy); }
-    .co-loc  { font-size: 8.5pt; color: var(--muted); margin-top: 1px; }
+    /* CAPABILITIES */
+    .caps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding-top: 20px;
+    }
+    .cap-group-head {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(0,229,204,0.2);
+    }
+    .cap-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .cap-chip {
+      background: rgba(0,229,204,0.07);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,229,204,0.18);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .cap-chip:hover {
+      background: rgba(0,229,204,0.14);
+      border-color: rgba(0,229,204,0.4);
+    }
 
-    .role { margin-bottom: 10px; }
-    .role:last-child { margin-bottom: 0; }
-
+    /* EXPERIENCE TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 36px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 16px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--teal), rgba(0,229,204,0.1));
+    }
+    .timeline-node {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .timeline-node:last-child { margin-bottom: 0; }
+    .timeline-node::before {
+      content: '';
+      position: absolute;
+      left: -31px;
+      top: 22px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--dark);
+      border: 2px solid var(--teal);
+      box-shadow: 0 0 0 4px rgba(0,229,204,0.12);
+      z-index: 1;
+    }
+    .timeline-card {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(220,220,232,0.7);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .timeline-card:hover {
+      box-shadow: 0 4px 32px rgba(0,229,204,0.08), var(--card-shadow);
+    }
+    .co-acc-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s;
+      gap: 12px;
+    }
+    .co-acc-btn:hover { background: rgba(0,229,204,0.03); }
+    .co-acc-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: -2px; }
+    .co-label-wrap { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+    .co-acc-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .co-acc-sub {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .co-acc-body {
+      overflow: hidden;
+      transition: max-height 0.36s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+      max-height: 4000px;
+      opacity: 1;
+    }
+    .co-acc-body.closed { max-height: 0; opacity: 0; }
+    .co-acc-content {
+      padding: 0 24px 24px;
+      border-top: 1px solid var(--rule);
+    }
+    .role { margin-top: 20px; }
+    .role:first-child { margin-top: 20px; }
     .role-hdr {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       flex-wrap: wrap;
       gap: 4px;
+      margin-bottom: 3px;
     }
-    .role-title { font-size: 10pt; font-weight: 700; color: var(--teal-dark); }
-    .role-dates { font-size: 8.5pt; color: var(--muted); white-space: nowrap; }
-    .role-sub   { font-size: 8.5pt; color: var(--muted); font-style: italic; margin: 2px 0 5px; }
-    .role-lead  { font-size: 9.3pt; color: var(--muted); margin-bottom: 7px; line-height: 1.5; }
-
-    .sub-head {
-      font-size: 7.5pt;
+    .role-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
       font-weight: 700;
-      color: var(--navy);
+      color: var(--text);
+    }
+    .role-dates {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      font-weight: 400;
+    }
+    .role-sub {
+      font-size: 12px;
+      color: var(--teal);
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .role-lead {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-bottom: 10px;
+      line-height: 1.55;
+      font-weight: 300;
+    }
+    .sub-head {
+      font-family: 'Syne', sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin: 8px 0 4px;
+      letter-spacing: 0.12em;
+      margin: 14px 0 6px;
+    }
+    ul.bul { padding-left: 16px; }
+    ul.bul li {
+      font-size: 13.5px;
+      color: var(--text);
+      margin-bottom: 5px;
+      line-height: 1.5;
+    }
+    ul.bul li::marker { color: var(--teal); }
+    .role-divider {
+      border: none;
+      border-top: 1px dashed var(--rule);
+      margin: 16px 0;
     }
 
-    ul.bul { padding-left: 15px; }
-    ul.bul li { font-size: 9.3pt; color: var(--text); margin-bottom: 3.5px; line-height: 1.44; }
-    ul.bul li::marker { color: var(--teal-mid); }
-
-    .role-divider { border: none; border-top: 1px dashed var(--rule); margin: 10px 0; }
-
-    /* ─── EDUCATION ─── */
-    .edu-item { margin-bottom: 10px; }
+    /* EDUCATION */
+    .edu-item {
+      margin-bottom: 14px;
+      padding-top: 20px;
+    }
     .edu-item:last-child { margin-bottom: 0; }
-    .edu-degree { font-size: 9.5pt; font-weight: 700; color: var(--navy); }
-    .edu-school { font-size: 9pt; color: var(--muted); margin-top: 2px; }
+    .edu-degree {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .edu-school {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
 
-    /* ─── CERTS ─── */
-    .cert-grp { margin-bottom: 12px; }
+    /* CERTIFICATIONS */
+    .cert-grp {
+      margin-bottom: 18px;
+      padding-top: 20px;
+    }
     .cert-grp:last-child { margin-bottom: 0; }
     .cert-grp-lbl {
-      font-size: 7.5pt; font-weight: 700; color: var(--navy);
-      text-transform: uppercase; letter-spacing: 0.8px;
+      font-family: 'Syne', sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+    ul.cert-list { padding-left: 16px; }
+    ul.cert-list li {
+      font-size: 13.5px;
+      color: var(--text);
       margin-bottom: 5px;
+      line-height: 1.45;
     }
-    ul.cert-list { padding-left: 15px; }
-    ul.cert-list li { font-size: 9pt; color: var(--text); margin-bottom: 3px; line-height: 1.4; }
-    ul.cert-list li::marker { color: var(--teal-mid); }
+    ul.cert-list li::marker { color: var(--teal); }
 
-    /* ─── ADDITIONAL ─── */
-    ul.add-list { padding-left: 15px; }
-    ul.add-list li { font-size: 9.5pt; color: var(--text); margin-bottom: 4px; }
-    ul.add-list li::marker { color: var(--teal-mid); }
+    /* ADDITIONAL */
+    ul.add-list { padding-left: 16px; padding-top: 20px; }
+    ul.add-list li {
+      font-size: 13.5px;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    ul.add-list li::marker { color: var(--teal); }
 
-    /* ─── FOOTER ─── */
+    /* FOOTER */
     .footer {
-      text-align: center;
-      padding: 20px 0 8px;
-      font-size: 8pt;
-      color: var(--muted);
+      background: var(--dark);
+      border-top: 2px solid var(--teal);
+      padding: 36px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
     }
-    .footer a { color: var(--muted); text-decoration: none; }
-    .footer a:hover { color: var(--teal); }
+    .footer-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: -0.01em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--teal); }
+    .footer-meta {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      width: 100%;
+    }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 600px) {
-      .hero-inner { flex-direction: column; gap: 20px; text-align: center; }
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow   { animation: fadeInUp 0.6s ease both; animation-delay: 0.1s; }
+    .hero-name      { animation: fadeInUp 0.6s ease both; animation-delay: 0.2s; }
+    .hero-title     { animation: fadeInUp 0.6s ease both; animation-delay: 0.32s; }
+    .hero-quote     { animation: fadeInUp 0.6s ease both; animation-delay: 0.44s; }
+    .hero-contact   { animation: fadeInUp 0.6s ease both; animation-delay: 0.56s; }
+    .hero-photo-wrap{ animation: fadeInUp 0.6s ease both; animation-delay: 0.3s; }
+    .section-wrap:nth-child(1) { animation: fadeInUp 0.6s ease both; animation-delay: 0.1s; }
+    .section-wrap:nth-child(2) { animation: fadeInUp 0.6s ease both; animation-delay: 0.2s; }
+    .section-wrap:nth-child(3) { animation: fadeInUp 0.6s ease both; animation-delay: 0.3s; }
+    .section-wrap:nth-child(4) { animation: fadeInUp 0.6s ease both; animation-delay: 0.38s; }
+    .section-wrap:nth-child(5) { animation: fadeInUp 0.6s ease both; animation-delay: 0.46s; }
+    .section-wrap:nth-child(6) { animation: fadeInUp 0.6s ease both; animation-delay: 0.54s; }
+    .section-wrap:nth-child(7) { animation: fadeInUp 0.6s ease both; animation-delay: 0.62s; }
+    ul.bul li:nth-child(1)  { animation: fadeInUp 0.5s ease both; animation-delay: 0.05s; }
+    ul.bul li:nth-child(2)  { animation: fadeInUp 0.5s ease both; animation-delay: 0.10s; }
+    ul.bul li:nth-child(3)  { animation: fadeInUp 0.5s ease both; animation-delay: 0.15s; }
+    ul.bul li:nth-child(4)  { animation: fadeInUp 0.5s ease both; animation-delay: 0.20s; }
+    ul.bul li:nth-child(5)  { animation: fadeInUp 0.5s ease both; animation-delay: 0.25s; }
+    ul.bul li:nth-child(6)  { animation: fadeInUp 0.5s ease both; animation-delay: 0.30s; }
+    ul.bul li:nth-child(7)  { animation: fadeInUp 0.5s ease both; animation-delay: 0.35s; }
+    ul.bul li:nth-child(8)  { animation: fadeInUp 0.5s ease both; animation-delay: 0.40s; }
+    ul.bul li:nth-child(n+9){ animation: fadeInUp 0.5s ease both; animation-delay: 0.45s; }
+
+    /* PRINT */
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+      .topbar { display: none !important; }
+
+      /* Hero: white bg, dark text */
+      .hero {
+        background: #ffffff !important;
+        min-height: auto !important;
+        padding: 32px 0 24px !important;
+        page-break-inside: avoid;
+      }
+      .hero::before, .hero::after { display: none !important; }
+      .hero-eyebrow { color: #00B5A0 !important; }
+      .hero-eyebrow::before { background: #00B5A0 !important; }
+      .hero-name { color: #0A0A0F !important; }
+      .hero-title { color: #00B5A0 !important; }
+      .hero-quote {
+        color: #333 !important;
+        border-left-color: rgba(0,181,160,0.5) !important;
+        border-top: none !important;
+        border-bottom: none !important;
+        padding-left: 16px !important;
+        text-align: left !important;
+      }
+      .hero-contact a,
+      .hero-contact span { color: #444 !important; }
+      .hero-contact .dot { color: #bbb !important; }
+      .hero-photo { border-color: rgba(0,181,160,0.5) !important; }
+
+      /* Page body */
+      body { background: #ffffff !important; }
+      .page-body { padding: 32px 0 40px !important; }
+
+      /* Section numbers: barely visible */
+      .section-num { color: rgba(0,0,0,0.04) !important; }
+      .section-label { color: #00B5A0 !important; }
+      .section-label::before { background: #00B5A0 !important; }
+      .section-title { color: #0A0A0F !important; }
+
+      /* Cards + accordions: expand all, clean bg */
+      .card, .timeline-card {
+        box-shadow: none !important;
+        border-color: #ddd !important;
+      }
+      .acc-body.closed, .co-acc-body.closed {
+        max-height: 4000px !important;
+        opacity: 1 !important;
+        display: block !important;
+      }
+      .acc-btn, .co-acc-btn { display: none !important; }
+      .acc-content, .co-acc-content { border-top: 1px solid #eee !important; }
+
+      /* Recommendations: light bg */
+      .reco-scroll { overflow: visible !important; flex-wrap: wrap !important; }
+      .reco-card {
+        background: #f8f8f8 !important;
+        border-color: #ddd !important;
+        page-break-inside: avoid;
+        min-width: 45% !important;
+        max-width: 48% !important;
+      }
+      .reco-quote-mark { color: rgba(0,181,160,0.25) !important; }
+      .reco-text { color: #333 !important; }
+      .reco-name { color: #00B5A0 !important; }
+      .reco-job, .reco-meta { color: #666 !important; }
+      .reco-footer { border-top-color: #ddd !important; }
+
+      /* Timeline */
+      .timeline::before { background: linear-gradient(to bottom, #00B5A0, rgba(0,181,160,0.1)) !important; }
+      .timeline-node::before {
+        background: #fff !important;
+        border-color: #00B5A0 !important;
+        box-shadow: none !important;
+      }
+      .timeline-card:hover { box-shadow: none !important; }
+
+      /* Cap chips */
+      .cap-chip {
+        background: rgba(0,181,160,0.06) !important;
+        border-color: rgba(0,181,160,0.2) !important;
+      }
+      .cap-group-head { color: #00B5A0 !important; border-bottom-color: rgba(0,181,160,0.2) !important; }
+
+      /* Bullets + dividers */
+      ul.bul li::marker, ul.cert-list li::marker, ul.add-list li::marker { color: #00B5A0 !important; }
+      .role-divider { border-top-color: #eee !important; }
+      .sub-head { color: #0A0A0F !important; }
+      .role-dates, .role-lead, .co-acc-sub, .edu-school { color: #666 !important; }
+
+      /* Footer */
+      .footer {
+        background: #ffffff !important;
+        border-top-color: #00B5A0 !important;
+      }
+      .footer-name { color: #0A0A0F !important; }
+      .footer-links a, .footer-links span { color: #444 !important; }
+      .footer-meta { color: #999 !important; }
+
+      /* Animations: disable for print */
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+
+      /* Page breaks */
+      .section-wrap { page-break-inside: avoid; }
+      .timeline-node { page-break-inside: avoid; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .topbar { padding: 0 20px; }
+      .topbar-name { font-size: 11px; }
+      .topbar-links a { padding: 16px 10px; font-size: 12px; }
+      .hero { padding: 52px 24px 48px; min-height: auto; }
+      .hero-inner { flex-direction: column-reverse; gap: 28px; text-align: center; }
+      .hero-photo { width: 110px; height: 110px; }
+      .hero-photo-wrap .initials { width: 110px; height: 110px; font-size: 28px; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-quote { margin: 0 auto 28px; padding-left: 0; padding: 14px 16px; border-left: none; border-top: 1px solid rgba(0,229,204,0.25); border-bottom: 1px solid rgba(0,229,204,0.25); text-align: center; }
       .hero-contact { justify-content: center; }
-      .hero-divider { margin: 14px auto; }
-      .hero-photo { width: 88px; height: 88px; }
-      .hero-name { font-size: 22pt; }
-      .acc-content { padding: 4px 16px 18px; }
+      .page-body { padding: 40px 20px 56px; }
+      .section-num { font-size: 64px; top: -12px; left: -4px; }
+      .section-title { font-size: 20px; }
+      .timeline { padding-left: 0; }
+      .timeline::before { display: none; }
+      .timeline-node::before { display: none; }
+      .timeline-node { margin-bottom: 16px; }
+      .caps-grid { grid-template-columns: 1fr; gap: 20px; }
+      .footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
+      .footer-links { flex-wrap: wrap; gap: 16px; }
+    }
+    @media (max-width: 900px) and (min-width: 641px) {
+      .caps-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
 
-<!-- ══ TOPBAR ══ -->
+<!-- TOPBAR -->
 <nav class="topbar">
   <span class="topbar-name">Tyson Priddle</span>
   <div class="topbar-links">
+    <a href="#about">About</a>
+    <a href="#recommendations">Recommendations</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#certs">Credentials</a>
+    <a href="#additional">More</a>
     <a href="https://linkedin.com/in/tysonpriddle" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="mailto:tyson.priddle@gmail.com">Email me</a>
+    <a href="mailto:tyson.priddle@gmail.com">Email</a>
   </div>
 </nav>
 
-<!-- ══ HERO ══ -->
+<!-- HERO -->
 <header class="hero">
   <div class="hero-inner">
+
+    <div class="hero-text">
+      <div class="hero-eyebrow">AI Capability Leader</div>
+      <h1 class="hero-name">TYSON<br>PRIDDLE</h1>
+      <div class="hero-title">Learning Technology &amp; AI Capability</div>
+      <blockquote class="hero-quote">
+        I design and scale learning ecosystems that deliver measurable outcomes, and I bring an external perspective on where learning technology is heading that most internal L&amp;D functions don't have.
+      </blockquote>
+      <div class="hero-contact">
+        <span>Melbourne, VIC</span>
+        <span class="dot">&middot;</span>
+        <span>0422 566 282</span>
+        <span class="dot">&middot;</span>
+        <a href="mailto:tyson.priddle@gmail.com">tyson.priddle@gmail.com</a>
+        <span class="dot">&middot;</span>
+        <a href="https://linkedin.com/in/tysonpriddle" target="_blank" rel="noopener noreferrer">linkedin.com/in/tysonpriddle</a>
+      </div>
+    </div>
 
     <div class="hero-photo-wrap">
       <img
@@ -325,308 +878,475 @@
       <div class="initials">TP</div>
     </div>
 
-    <div class="hero-text">
-      <div class="hero-name">TYSON PRIDDLE</div>
-      <div class="hero-title">Learning Technology &amp; AI Capability Leader</div>
-      <div class="hero-divider"></div>
-      <div class="hero-contact">
-        <span>Melbourne, VIC</span>
-        <span class="dot">·</span>
-        <span>0422 566 282</span>
-        <span class="dot">·</span>
-        <a href="mailto:tyson.priddle@gmail.com">tyson.priddle@gmail.com</a>
-        <span class="dot">·</span>
-        <a href="https://linkedin.com/in/tysonpriddle" target="_blank" rel="noopener noreferrer">linkedin.com/in/tysonpriddle</a>
-      </div>
-    </div>
-
   </div>
 </header>
 
-<!-- ══ CONTENT ══ -->
-<div class="container">
+<!-- CONTENT -->
+<div class="page-body">
 
-  <!-- About -->
-  <div class="acc-card">
-    <button class="acc-btn" aria-expanded="true" aria-controls="sec-about">
-      <span class="acc-btn-label">About</span>
-      <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-    <div class="acc-body" id="sec-about">
-      <div class="acc-content">
-        <p class="summary">Over 20 years in learning and capability, the last decade focused on digital learning technology, learning design, platform implementation, and enterprise AI enablement. I have worked on both sides of the vendor/client relationship — seven years running the Australian business for a global learning technology company, then leading AI capability and learning systems at EY Oceania. I design and scale learning ecosystems that deliver measurable outcomes, and I bring an external perspective on where learning technology is heading that most internal L&amp;D functions don't have.</p>
-      </div>
+  <!-- 01 ABOUT -->
+  <section class="section-wrap" id="about">
+    <div class="section-head">
+      <div class="section-num">01</div>
+      <div class="section-label">About</div>
+      <div class="section-title">Background</div>
     </div>
-  </div>
-
-  <!-- Core Capabilities -->
-  <div class="acc-card">
-    <button class="acc-btn" aria-expanded="true" aria-controls="sec-caps">
-      <span class="acc-btn-label">Core Capabilities</span>
-      <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-    <div class="acc-body" id="sec-caps">
-      <div class="acc-content">
-        <div class="caps">
-          <span class="cap">Learning Technology Strategy</span>
-          <span class="cap">AI Capability &amp; Enablement</span>
-          <span class="cap">LMS / LXP Implementation</span>
-          <span class="cap">HCM &amp; Platform Integration</span>
-          <span class="cap">Technology Roadmap</span>
-          <span class="cap">Learning Design</span>
-          <span class="cap">Digital Onboarding</span>
-          <span class="cap">Learning Analytics</span>
-          <span class="cap">Stakeholder Influence</span>
-          <span class="cap">Vendor Management</span>
-          <span class="cap">Team Leadership</span>
-          <span class="cap">Change Management</span>
-          <span class="cap">Commercial Acumen</span>
+    <div class="card">
+      <button class="acc-btn" aria-expanded="true" aria-controls="sec-about">
+        <span style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0.04em;">Professional summary</span>
+        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="acc-body" id="sec-about">
+        <div class="acc-content">
+          <p class="summary">Twenty years in learning and capability. The last decade has been focused on digital learning technology, learning design, platform implementation, and enterprise AI enablement. I have worked on both sides of the vendor/client relationship: seven years running the Australian business for a global learning technology company, then leading AI capability and learning systems at EY Oceania. I design and scale learning ecosystems that deliver measurable outcomes, and I bring an external perspective on where learning technology is heading that most internal L&amp;D functions don't have.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Experience -->
-  <div class="exp-group">
-    <div class="exp-group-label">Experience</div>
+  <!-- 02 RECOMMENDATIONS -->
+  <section class="section-wrap" id="recommendations">
+    <div class="section-head">
+      <div class="section-num">02</div>
+      <div class="section-label">Recommendations</div>
+      <div class="section-title">What people say</div>
+    </div>
+    <div class="reco-scroll">
 
-    <!-- EY Oceania -->
-    <div class="acc-card">
-      <button class="acc-btn" aria-expanded="true" aria-controls="co-ey">
-        <span class="acc-btn-label co-label">
-          <span class="co-acc-name">EY Oceania</span>
-          <span class="co-acc-sub">Melbourne, VIC &nbsp;&middot;&nbsp; 2024 &ndash; Present</span>
-        </span>
-        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="acc-body" id="co-ey">
-        <div class="acc-content">
-
-          <div class="role">
-            <div class="role-hdr">
-              <span class="role-title">Learning Technology Manager (AI)</span>
-              <span class="role-dates">2026 &ndash; Present</span>
-            </div>
-            <div class="role-sub">All EY Oceania pillar</div>
-            <p class="role-lead">Leading AI capability uplift across EY Oceania with enterprise-wide scope across all service lines and business functions.</p>
-            <ul class="bul">
-              <li>Developing the EY Oceania AI L&amp;D strategy for FY27, covering technology roadmap, capability sequencing, and measurement frameworks</li>
-              <li>Leading enterprise AI capability uplift including Copilot enablement across thousands of employees in Australia and New Zealand</li>
-              <li>Designed and delivered Copilot Agent Builder workshops across Melbourne, Sydney, and Canberra, reaching 300+ practitioners, with ongoing drop-in coaching and enablement sessions</li>
-              <li>Built and governed a centralised AI learning ecosystem covering Copilot Studio, ChatGPT, Azure AI Lab, Google Labs, Synthesia, and agent-based platforms, moving users from awareness to day-to-day application</li>
-              <li>Produced a bite-sized AI video series for scalable, just-in-time capability development</li>
-              <li>Delivered a guest lecture at Monash University on AI and the future of learning design (May 2026)</li>
-            </ul>
-          </div>
-
-          <hr class="role-divider">
-
-          <div class="role">
-            <div class="role-hdr">
-              <span class="role-title">Learning Insights and Technology Manager</span>
-              <span class="role-dates">Feb 2024 &ndash; 2026</span>
-            </div>
-            <div class="role-sub">Learning Experience &amp; Insights pillar</div>
-            <p class="role-lead">Led learning technology, digital onboarding, and data capability across EY Oceania's Learning Experience and Insights pillar.</p>
-
-            <div class="sub-head">Digital onboarding: Enboarder</div>
-            <ul class="bul">
-              <li>Led end-to-end implementation of Enboarder as EY Oceania's onboarding platform, owning functional specification, vendor selection, business case, HCM integration, InfoSec approval, and full rollout</li>
-              <li>Delivered onboarding transformation at scale across lateral, graduate, and rush hire cohorts. Achieved a top-quartile experience rating, significantly exceeded NPS targets, and materially improved 90-day retention</li>
-              <li>Reduced face-to-face onboarding by approximately 30% through workflow redesign and pre-learning</li>
-              <li>Secured a 2-year platform extension through demonstrated business value and stakeholder advocacy</li>
-            </ul>
-
-            <div class="sub-head">Learning platforms and adoption</div>
-            <ul class="bul">
-              <li>Led Microsoft Viva Learning LXP rollout across Oceania Central Business Services, driving adoption across approximately 900 users through curated pathways, structured communications, and peer engagement</li>
-              <li>Designed and facilitated technology onboarding sessions for each new starter cohort, targeting early platform adoption</li>
-            </ul>
-
-            <div class="sub-head">Data, insights, and reporting</div>
-            <ul class="bul">
-              <li>Re-established the L&amp;D Insights Dashboard as the central source for learning performance data across EY Oceania</li>
-              <li>Designed and implemented a standardised metrics framework enabling consistent measurement across programmes</li>
-              <li>Shifted L&amp;D reporting from passive data distribution to active, evidence-based decision-making</li>
-            </ul>
-          </div>
-
+      <div class="reco-card">
+        <span class="reco-quote-mark">&ldquo;</span>
+        <p class="reco-text">Tyson Priddle is the manager you've always wanted. He's a people-first oriented leader who takes charge and always has your back. Tyson has a masterful talent and skill for bringing people together, listening to them, and allowing their abilities to grow beyond what they even believed for themselves. Tyson is a leader who knows how to get projects done. His communication skills are unmatched, and when he doesn't know the best answer to a solution, you can bet he knows the exact person to ask. His innate empathy and commitment to work makes him a naturally likeable and trustworthy person. If you've worked with Tyson before, you're likely to want to work with him again. If your workplace has Tyson in their corner, you'll see immediately what a positive and life-giving atmosphere he brings. He makes work easier.</p>
+        <div class="reco-footer">
+          <div class="reco-name">Felix Macfarlane</div>
+          <div class="reco-job">E-Learning Content Expert</div>
+          <div class="reco-meta">Direct report &middot; April 2024</div>
         </div>
       </div>
-    </div>
 
-    <!-- imc -->
-    <div class="acc-card">
-      <button class="acc-btn" aria-expanded="false" aria-controls="co-imc">
-        <span class="acc-btn-label co-label">
-          <span class="co-acc-name">imc Information Multimedia Communication (Scheer IMC)</span>
-          <span class="co-acc-sub">Melbourne, VIC &nbsp;&middot;&nbsp; 2017 &ndash; 2024</span>
-        </span>
-        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <div class="acc-body closed" id="co-imc">
-        <div class="acc-content">
-
-          <div class="role">
-            <div class="role-hdr">
-              <span class="role-title">Director, Digital Learning, Australia &amp; New Zealand</span>
-              <span class="role-dates">Jan 2018 &ndash; Jan 2024</span>
-            </div>
-            <p class="role-lead">Led the Australian business unit for a global learning technology company, managing full P&amp;L, a team of 5+, and enterprise clients across government, financial services, logistics, and mining.</p>
-            <ul class="bul">
-              <li>Won 2 Platinum and 1 Gold LearnX Awards in 2023 across compliance, onboarding, and capability programmes</li>
-              <li>Pitched and oversaw a compliance revamp project worth over $500k USD for a leading Singapore bank, including travel to lead solution design workshops on-site</li>
-              <li>Grew the government content portfolio to over $2M in contracted work with NSW and VIC government agencies</li>
-              <li>Led a strategic restructure of the AU business unit, shifting from project delivery to recurring revenue through the LMS platform and AI-powered authoring tool</li>
-              <li>Managed forecasting, budgeting, and financial performance across a $2M+ annual revenue portfolio</li>
-              <li>Consulted enterprise clients on learning technology strategy, platform selection, and blended learning design across resources, financial services, healthcare, not-for-profit, and government</li>
-              <li>Secured and managed enterprise client relationships including Deloitte, Porsche, Blackmores, CSL, FedEx (APAC), NRL, Hockey Australia, UOB (Singapore), NSW Department of Justice, Department of Health, Department of Families Fairness and Housing, Victorian Department of Education, and NZ Sport</li>
-            </ul>
-          </div>
-
-          <hr class="role-divider">
-
-          <div class="role">
-            <div class="role-hdr">
-              <span class="role-title">Digital Learning Manager</span>
-              <span class="role-dates">Jul 2017 &ndash; Jan 2018</span>
-            </div>
-            <ul class="bul">
-              <li>Managed all digital learning projects and local and external resources across instructional design, multimedia production, video, and voiceover</li>
-              <li>Owned end-to-end project delivery from concept through authoring, testing, and release</li>
-            </ul>
-          </div>
-
+      <div class="reco-card">
+        <span class="reco-quote-mark">&ldquo;</span>
+        <p class="reco-text">What sets Tyson apart is his ability to bring people together, create alignment, and build genuine connections across teams and cultures. Although we did not work together on a daily basis, every interaction with him was thoughtful, inspiring, and impactful. His leadership style combines strategic thinking with a highly collaborative and people-focused approach. Together with his strong communication skills, he has a natural talent for connecting diverse perspectives and creating an environment where ideas and people thrive.</p>
+        <div class="reco-footer">
+          <div class="reco-name">Kerstin Steffen</div>
+          <div class="reco-job">Brand and Communications Leader, EY</div>
+          <div class="reco-meta">Same team &middot; May 2026</div>
         </div>
       </div>
-    </div>
 
-    <!-- Cubic Consulting -->
-    <div class="acc-card">
-      <button class="acc-btn" aria-expanded="false" aria-controls="co-cubic">
-        <span class="acc-btn-label co-label">
-          <span class="co-acc-name">Cubic Consulting (now Atturra)</span>
-          <span class="co-acc-sub">Melbourne, VIC &nbsp;&middot;&nbsp; 2012 &ndash; 2016</span>
-        </span>
+      <div class="reco-card">
+        <span class="reco-quote-mark">&ldquo;</span>
+        <p class="reco-text">Tyson's leadership helped us to align on direction in challenging projects with a wide array of stakeholders. His leadership really shone in bringing together our team to deliver on excellent eLearning projects and his passion for digital learning was evident in the quality he inspired the team to achieve. It was a pleasure to work with Tyson who always had a positive attitude and wanted to see his team excel wherever possible.</p>
+        <div class="reco-footer">
+          <div class="reco-name">Jayne Gurton</div>
+          <div class="reco-job">Project Manager, imc</div>
+          <div class="reco-meta">Direct report &middot; June 2021</div>
+        </div>
+      </div>
+
+      <div class="reco-card">
+        <span class="reco-quote-mark">&ldquo;</span>
+        <p class="reco-text">Tyson builds trust with all clients that he works with. His ability to build strong client relationships is a testament to his professionalism, communication skills and ability to deliver. Every project that I worked on with Tyson over the past twelve months resulted in a product that showcased quality and attention to detail. Tyson's team management skills are outstanding. He has the ability to draw the best out of a team, creating not just a fun working environment but a creative powerhouse.</p>
+        <div class="reco-footer">
+          <div class="reco-name">Rosalyn Pursey</div>
+          <div class="reco-job">Lead Learning Designer</div>
+          <div class="reco-meta">Colleague &middot; February 2015</div>
+        </div>
+      </div>
+
+      <div class="reco-card">
+        <span class="reco-quote-mark">&ldquo;</span>
+        <p class="reco-text">Tyson is a hard working and ethical eLearning consultant with advanced skill in Project Management, Educational Technology and Instructional Design. Tyson develops strong relationships with the team, customers and suppliers and is focused on delivering positive outcomes on all his engagements. Tyson maintains current knowledge developments in educational technology and pedagogy. He gives of his time to mentor and support those less experienced than he is. I'd certainly jump at the opportunity to work with Tyson again.</p>
+        <div class="reco-footer">
+          <div class="reco-name">Lorence Issa</div>
+          <div class="reco-job">NSW Government</div>
+          <div class="reco-meta">Managed Tyson directly &middot; November 2016</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 03 CORE CAPABILITIES -->
+  <section class="section-wrap" id="capabilities">
+    <div class="section-head">
+      <div class="section-num">03</div>
+      <div class="section-label">Core Capabilities</div>
+      <div class="section-title">Skills &amp; Expertise</div>
+    </div>
+    <div class="card">
+      <button class="acc-btn" aria-expanded="true" aria-controls="sec-caps">
+        <span style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0.04em;">Grouped by domain</span>
         <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="acc-body closed" id="co-cubic">
+      <div class="acc-body" id="sec-caps">
         <div class="acc-content">
-          <div class="role">
-            <div class="role-hdr">
-              <span class="role-title">eLearning Consultant &rarr; Senior Consultant &rarr; Team Lead</span>
-              <span class="role-dates">Jul 2012 &ndash; Nov 2016</span>
+          <div class="caps-grid">
+            <div class="cap-group">
+              <div class="cap-group-head">Strategy &amp; Leadership</div>
+              <div class="cap-chips">
+                <span class="cap-chip">Learning Technology Strategy</span>
+                <span class="cap-chip">Technology Roadmap</span>
+                <span class="cap-chip">Team Leadership</span>
+                <span class="cap-chip">Commercial Acumen</span>
+                <span class="cap-chip">Change Management</span>
+                <span class="cap-chip">Vendor Management</span>
+              </div>
             </div>
-            <p class="role-lead">Progressed from consultant to team lead over four years, delivering digital learning strategy, instructional design, and platform implementation for enterprise clients across government, corporate, and higher education. Clients included NSW and VIC Government, UNSW, UNE, and Department of Education and Training.</p>
+            <div class="cap-group">
+              <div class="cap-group-head">Technology &amp; Platforms</div>
+              <div class="cap-chips">
+                <span class="cap-chip">AI Capability &amp; Enablement</span>
+                <span class="cap-chip">LMS / LXP Implementation</span>
+                <span class="cap-chip">HCM &amp; Platform Integration</span>
+                <span class="cap-chip">Learning Analytics</span>
+                <span class="cap-chip">Digital Onboarding</span>
+              </div>
+            </div>
+            <div class="cap-group">
+              <div class="cap-group-head">Delivery &amp; Influence</div>
+              <div class="cap-chips">
+                <span class="cap-chip">Learning Design</span>
+                <span class="cap-chip">Stakeholder Influence</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Earlier career -->
-    <div class="acc-card">
-      <button class="acc-btn" aria-expanded="false" aria-controls="co-earlier">
-        <span class="acc-btn-label co-label">
-          <span class="co-acc-name">Earlier Career</span>
-          <span class="co-acc-sub">2004 &ndash; 2012</span>
-        </span>
+  <!-- 04 EXPERIENCE -->
+  <section class="section-wrap" id="experience">
+    <div class="section-head">
+      <div class="section-num">04</div>
+      <div class="section-label">Experience</div>
+      <div class="section-title">Career History</div>
+    </div>
+
+    <div class="timeline">
+
+      <!-- EY Oceania -->
+      <div class="timeline-node">
+        <div class="timeline-card">
+          <button class="co-acc-btn" aria-expanded="true" aria-controls="co-ey">
+            <div class="co-label-wrap">
+              <span class="co-acc-name">EY Oceania</span>
+              <span class="co-acc-sub">Melbourne, VIC &nbsp;&middot;&nbsp; 2024 &ndash; Present</span>
+            </div>
+            <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="co-acc-body" id="co-ey">
+            <div class="co-acc-content">
+
+              <div class="role">
+                <div class="role-hdr">
+                  <span class="role-title">Learning Technology Manager (AI)</span>
+                  <span class="role-dates">2026 &ndash; Present</span>
+                </div>
+                <div class="role-sub">All EY Oceania pillar</div>
+                <p class="role-lead">Leading AI capability uplift across EY Oceania with enterprise-wide scope across all service lines and business functions.</p>
+                <ul class="bul">
+                  <li>Developing the EY Oceania AI L&amp;D strategy for FY27, covering technology roadmap, capability sequencing, and measurement frameworks</li>
+                  <li>Leading enterprise AI capability uplift including Copilot enablement across thousands of employees in Australia and New Zealand</li>
+                  <li>Designed and delivered Copilot Agent Builder workshops across Melbourne, Sydney, and Canberra, reaching 300+ practitioners, with ongoing drop-in coaching and enablement sessions</li>
+                  <li>Built and governed a centralised AI learning ecosystem covering Copilot Studio, ChatGPT, Azure AI Lab, Google Labs, Synthesia, and agent-based platforms, moving users from awareness to day-to-day application</li>
+                  <li>Produced a bite-sized AI video series for scalable, just-in-time capability development</li>
+                  <li>Delivered a guest lecture at Monash University on AI and the future of learning design (May 2026)</li>
+                </ul>
+              </div>
+
+              <hr class="role-divider">
+
+              <div class="role">
+                <div class="role-hdr">
+                  <span class="role-title">Learning Insights and Technology Manager</span>
+                  <span class="role-dates">Feb 2024 &ndash; 2026</span>
+                </div>
+                <div class="role-sub">Learning Experience &amp; Insights pillar</div>
+                <p class="role-lead">Led learning technology, digital onboarding, and data capability across EY Oceania's Learning Experience and Insights pillar.</p>
+
+                <div class="sub-head">Digital onboarding: Enboarder</div>
+                <ul class="bul">
+                  <li>Led end-to-end implementation of Enboarder as EY Oceania's onboarding platform, owning functional specification, vendor selection, business case, HCM integration, InfoSec approval, and full rollout</li>
+                  <li>Delivered onboarding transformation at scale across lateral, graduate, and rush hire cohorts. Achieved a top-quartile experience rating, significantly exceeded NPS targets, and materially improved 90-day retention</li>
+                  <li>Reduced face-to-face onboarding by approximately 30% through workflow redesign and pre-learning</li>
+                  <li>Secured a 2-year platform extension through demonstrated business value and stakeholder advocacy</li>
+                </ul>
+
+                <div class="sub-head">Learning platforms and adoption</div>
+                <ul class="bul">
+                  <li>Led Microsoft Viva Learning LXP rollout across Oceania Central Business Services, driving adoption across approximately 900 users through curated pathways, structured communications, and peer engagement</li>
+                  <li>Designed and facilitated technology onboarding sessions for each new starter cohort, targeting early platform adoption</li>
+                </ul>
+
+                <div class="sub-head">Data, insights, and reporting</div>
+                <ul class="bul">
+                  <li>Re-established the L&amp;D Insights Dashboard as the central source for learning performance data across EY Oceania</li>
+                  <li>Designed and implemented a standardised metrics framework enabling consistent measurement across programmes</li>
+                  <li>Shifted L&amp;D reporting from passive data distribution to active, evidence-based decision-making</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- imc -->
+      <div class="timeline-node">
+        <div class="timeline-card">
+          <button class="co-acc-btn" aria-expanded="false" aria-controls="co-imc">
+            <div class="co-label-wrap">
+              <span class="co-acc-name">imc Information Multimedia Communication (Scheer IMC)</span>
+              <span class="co-acc-sub">Melbourne, VIC &nbsp;&middot;&nbsp; 2017 &ndash; 2024</span>
+            </div>
+            <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="co-acc-body closed" id="co-imc">
+            <div class="co-acc-content">
+
+              <div class="role">
+                <div class="role-hdr">
+                  <span class="role-title">Director, Digital Learning, Australia &amp; New Zealand</span>
+                  <span class="role-dates">Jan 2018 &ndash; Jan 2024</span>
+                </div>
+                <p class="role-lead">Led the Australian business unit for a global learning technology company, managing full P&amp;L, a team of 5+, and enterprise clients across government, financial services, logistics, and mining.</p>
+                <ul class="bul">
+                  <li>Won 2 Platinum and 1 Gold LearnX Awards in 2023 across compliance, onboarding, and capability programmes</li>
+                  <li>Pitched and oversaw a compliance revamp project worth over $500k USD for a leading Singapore bank, including travel to lead solution design workshops on-site</li>
+                  <li>Grew the government content portfolio to over $2M in contracted work with NSW and VIC government agencies</li>
+                  <li>Led a strategic restructure of the AU business unit, shifting from project delivery to recurring revenue through the LMS platform and AI-powered authoring tool</li>
+                  <li>Managed forecasting, budgeting, and financial performance across a $2M+ annual revenue portfolio</li>
+                  <li>Consulted enterprise clients on learning technology strategy, platform selection, and blended learning design across resources, financial services, healthcare, not-for-profit, and government</li>
+                  <li>Secured and managed enterprise client relationships including Deloitte, Porsche, Blackmores, CSL, FedEx (APAC), NRL, Hockey Australia, UOB (Singapore), NSW Department of Justice, Department of Health, Department of Families Fairness and Housing, Victorian Department of Education, and NZ Sport</li>
+                </ul>
+              </div>
+
+              <hr class="role-divider">
+
+              <div class="role">
+                <div class="role-hdr">
+                  <span class="role-title">Digital Learning Manager</span>
+                  <span class="role-dates">Jul 2017 &ndash; Jan 2018</span>
+                </div>
+                <ul class="bul">
+                  <li>Managed all digital learning projects and local and external resources across instructional design, multimedia production, video, and voiceover</li>
+                  <li>Owned end-to-end project delivery from concept through authoring, testing, and release</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cubic Consulting -->
+      <div class="timeline-node">
+        <div class="timeline-card">
+          <button class="co-acc-btn" aria-expanded="false" aria-controls="co-cubic">
+            <div class="co-label-wrap">
+              <span class="co-acc-name">Cubic Consulting (now Atturra)</span>
+              <span class="co-acc-sub">Melbourne, VIC &nbsp;&middot;&nbsp; 2012 &ndash; 2016</span>
+            </div>
+            <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="co-acc-body closed" id="co-cubic">
+            <div class="co-acc-content">
+              <div class="role">
+                <div class="role-hdr">
+                  <span class="role-title">eLearning Consultant &rarr; Senior Consultant &rarr; Team Lead</span>
+                  <span class="role-dates">Jul 2012 &ndash; Nov 2016</span>
+                </div>
+                <p class="role-lead">Progressed from consultant to team lead over four years, delivering digital learning strategy, instructional design, and platform implementation for enterprise clients across government, corporate, and higher education. Clients included NSW and VIC Government, UNSW, UNE, and Department of Education and Training.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Earlier Career -->
+      <div class="timeline-node">
+        <div class="timeline-card">
+          <button class="co-acc-btn" aria-expanded="false" aria-controls="co-earlier">
+            <div class="co-label-wrap">
+              <span class="co-acc-name">Earlier Career</span>
+              <span class="co-acc-sub">2004 &ndash; 2012</span>
+            </div>
+            <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="co-acc-body closed" id="co-earlier">
+            <div class="co-acc-content">
+
+              <div class="role">
+                <div class="role-hdr">
+                  <span class="role-title">eLearning Program Manager, Brightstar</span>
+                  <span class="role-dates">2011 &ndash; 2012</span>
+                </div>
+                <ul class="bul">
+                  <li>Managed internal eLearning programmes for Telstra and Blackberry product training across Brightstar's retail network</li>
+                </ul>
+              </div>
+
+              <hr class="role-divider">
+
+              <div class="role">
+                <div class="role-hdr">
+                  <span class="role-title">eLearning Coordinator / Design Consultant, Origin Energy</span>
+                  <span class="role-dates">Feb 2010 &ndash; Sep 2011</span>
+                </div>
+                <ul class="bul">
+                  <li>Worked within the Origin Learning Centre (OLC), coordinating eLearning design and development across retail, LPG, and shared services operations</li>
+                  <li>Managed the OLMS (SABA 5.5 LMS), including SCORM content deployment, vendor coordination, and platform administration</li>
+                  <li>Developed compliance, product knowledge, and systems training for a geographically dispersed retail and field workforce</li>
+                  <li>Coordinated external vendor relationships for eLearning production, including managing briefs, reviewing deliverables, and ensuring alignment to Origin's learning standards and technical requirements</li>
+                </ul>
+              </div>
+
+              <hr class="role-divider">
+
+              <div class="role">
+                <div class="role-hdr">
+                  <span class="role-title">Quality Specialist &amp; Training SME, Transurban</span>
+                  <span class="role-dates">2004 &ndash; 2010</span>
+                </div>
+                <ul class="bul">
+                  <li>Customer service, QA, and training delivery while completing undergraduate studies at Monash</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /timeline -->
+  </section>
+
+  <!-- 05 EDUCATION -->
+  <section class="section-wrap" id="education">
+    <div class="section-head">
+      <div class="section-num">05</div>
+      <div class="section-label">Education</div>
+      <div class="section-title">Qualifications</div>
+    </div>
+    <div class="card">
+      <button class="acc-btn" aria-expanded="true" aria-controls="sec-edu">
+        <span style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0.04em;">Academic credentials</span>
         <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="acc-body closed" id="co-earlier">
+      <div class="acc-body" id="sec-edu">
         <div class="acc-content">
-          <ul class="bul">
-            <li><strong>eLearning Program Manager, Brightstar</strong> (2011&ndash;2012). Managed internal eLearning programmes for Telstra and Blackberry product training across Brightstar's retail network.</li>
-            <li><strong>eLearning Coordinator / Design Consultant, Origin Energy</strong> (2010&ndash;2011). Designed eLearning across retail and shared services operations.</li>
-            <li><strong>Quality Specialist, Training SME, Transurban</strong> (2004&ndash;2010). Customer service, QA, and training delivery while completing undergraduate studies at Monash.</li>
+          <div class="edu-item">
+            <div class="edu-degree">Master of Education | ICT in Education</div>
+            <div class="edu-school">Monash University &nbsp;&middot;&nbsp; 2009 &ndash; 2011</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">Bachelor of Adult Learning and Development</div>
+            <div class="edu-school">Monash University &nbsp;&middot;&nbsp; 2007 &ndash; 2008</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 CERTIFICATIONS -->
+  <section class="section-wrap" id="certs">
+    <div class="section-head">
+      <div class="section-num">06</div>
+      <div class="section-label">Certifications</div>
+      <div class="section-title">Credentials</div>
+    </div>
+    <div class="card">
+      <button class="acc-btn" aria-expanded="true" aria-controls="sec-certs">
+        <span style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0.04em;">Badges &amp; professional certifications</span>
+        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="acc-body" id="sec-certs">
+        <div class="acc-content">
+          <div class="cert-grp">
+            <div class="cert-grp-lbl">EY Badge Microcredentials</div>
+            <ul class="cert-list">
+              <li>Applied AI</li>
+              <li>Responsible AI</li>
+              <li>Agentic AI</li>
+              <li>Data Visualisations</li>
+            </ul>
+          </div>
+          <div class="cert-grp">
+            <div class="cert-grp-lbl">External</div>
+            <ul class="cert-list">
+              <li>Career Essentials in Generative AI, Microsoft &amp; LinkedIn (2023)</li>
+              <li>Foundations of Cybersecurity, Google (2023)</li>
+              <li>Project Management Foundations, LinkedIn Learning (2022)</li>
+              <li>Certificate IV in Workplace Assessment &amp; Training, William Angliss TAFE (2005)</li>
+              <li>Certificate III in Information Technology, Gordon Institute of TAFE (2003 &ndash; 2004)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 ADDITIONAL -->
+  <section class="section-wrap" id="additional">
+    <div class="section-head">
+      <div class="section-num">07</div>
+      <div class="section-label">Additional</div>
+      <div class="section-title">Beyond Work</div>
+    </div>
+    <div class="card">
+      <button class="acc-btn" aria-expanded="true" aria-controls="sec-add">
+        <span style="font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0.04em;">Community &amp; interests</span>
+        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="acc-body" id="sec-add">
+        <div class="acc-content">
+          <ul class="add-list">
+            <li>Guest Lecturer, Monash University: AI and the Future of Learning Design (May 2026)</li>
+            <li>Board, Operations, Altona Hockey Club (2020 &ndash; 2023)</li>
+            <li>Assistant Coach (Men's Premier League) &amp; Head Coach (Men's Premier League Reserves), Altona Hockey Club (2026)</li>
           </ul>
         </div>
       </div>
     </div>
+  </section>
 
+</div><!-- /page-body -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-name">Tyson Priddle</div>
+  <div class="footer-links">
+    <span style="color:rgba(255,255,255,0.45);font-size:13px;">0422 566 282</span>
+    <a href="mailto:tyson.priddle@gmail.com">tyson.priddle@gmail.com</a>
+    <a href="https://linkedin.com/in/tysonpriddle" target="_blank" rel="noopener noreferrer">LinkedIn</a>
   </div>
-
-    <!-- Education -->
-  <div class="acc-card">
-    <button class="acc-btn" aria-expanded="true" aria-controls="sec-edu">
-      <span class="acc-btn-label">Education</span>
-      <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-    <div class="acc-body" id="sec-edu">
-      <div class="acc-content">
-        <div class="edu-item">
-          <div class="edu-degree">Master of Education | ICT in Education</div>
-          <div class="edu-school">Monash University &nbsp;·&nbsp; 2009 – 2011</div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-degree">Bachelor of Adult Learning and Development</div>
-          <div class="edu-school">Monash University &nbsp;·&nbsp; 2007 – 2008</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Certifications -->
-  <div class="acc-card">
-    <button class="acc-btn" aria-expanded="true" aria-controls="sec-certs">
-      <span class="acc-btn-label">Certifications</span>
-      <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-    <div class="acc-body" id="sec-certs">
-      <div class="acc-content">
-        <div class="cert-grp">
-          <div class="cert-grp-lbl">EY Badge Microcredentials</div>
-          <ul class="cert-list">
-            <li>Applied AI</li>
-            <li>Responsible AI</li>
-            <li>Agentic AI</li>
-            <li>Data Visualisations</li>
-          </ul>
-        </div>
-        <div class="cert-grp">
-          <div class="cert-grp-lbl">External</div>
-          <ul class="cert-list">
-            <li>Career Essentials in Generative AI, Microsoft &amp; LinkedIn (2023)</li>
-            <li>Foundations of Cybersecurity, Google (2023)</li>
-            <li>Project Management Foundations, LinkedIn Learning (2022)</li>
-            <li>Certificate IV in Workplace Assessment &amp; Training, William Angliss TAFE (2005)</li>
-            <li>Certificate III in Information Technology, Gordon Institute of TAFE (2003 – 2004)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Additional -->
-  <div class="acc-card">
-    <button class="acc-btn" aria-expanded="true" aria-controls="sec-add">
-      <span class="acc-btn-label">Additional</span>
-      <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-    <div class="acc-body" id="sec-add">
-      <div class="acc-content">
-        <ul class="add-list">
-          <li>Guest Lecturer, Monash University: AI and the Future of Learning Design (May 2026)</li>
-          <li>Board, Operations, Altona Hockey Club (2020 – 2023)</li>
-          <li>Assistant Coach (Men's Premier League) &amp; Head Coach (Men's Premier League Reserves), Altona Hockey Club (2026)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /container -->
-
-<div class="footer">
-  Updated May 2026 &nbsp;·&nbsp; Melbourne, VIC &nbsp;·&nbsp;
-  <a href="mailto:tyson.priddle@gmail.com">tyson.priddle@gmail.com</a>
-</div>
+  <div class="footer-meta">Updated May 2026 &nbsp;&middot;&nbsp; Melbourne, VIC</div>
+</footer>
 
 <script>
+  // Accordion: generic .acc-btn (About, Caps, Edu, Certs, Additional)
   document.querySelectorAll('.acc-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var expanded = this.getAttribute('aria-expanded') === 'true';
       var bodyId   = this.getAttribute('aria-controls');
       var body     = document.getElementById(bodyId);
+      if (expanded) {
+        this.setAttribute('aria-expanded', 'false');
+        body.classList.add('closed');
+      } else {
+        this.setAttribute('aria-expanded', 'true');
+        body.classList.remove('closed');
+      }
+    });
+  });
 
+  // Accordion: company nodes in the timeline (.co-acc-btn)
+  document.querySelectorAll('.co-acc-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      var bodyId   = this.getAttribute('aria-controls');
+      var body     = document.getElementById(bodyId);
       if (expanded) {
         this.setAttribute('aria-expanded', 'false');
         body.classList.add('closed');
